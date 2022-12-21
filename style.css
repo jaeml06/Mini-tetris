@@ -1,1 +1,18 @@
 td { width:50px; height:50px; border:1px solid orchid;  }
+div{
+    display: inline-block;
+}
+#score{
+    position: relative;
+    left: 30px;
+}
+#level{
+    position: relative;
+    left: 60px;
+}
+#block{
+    float: right;
+    width: 60px;
+    height: 60px;
+    background-color: aqua;
+}
