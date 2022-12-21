@@ -3,6 +3,17 @@ let prevIndex=0, index=0;
 const color = ["red", "green","blue"]
 let timerID = setInterval("falling()",1000);
 let setColor= color[Math.floor(Math.random()*3)]; 
+let arr = new Array(10);
+for (let i = 0; i < arr.length; i++) {
+    arr[i] = new Array(10);
+}
+function initArray(){
+	for(let i=0;i<10;i++){
+		for(let j=0;j<10;j++){
+			arr[i][j]=0;
+		}
+	}
+}
 window.onload = function () { // 웹 페이지의 로딩 완료시 실행
 	tds = document.getElementsByTagName("td");	
 	
@@ -10,6 +21,7 @@ window.onload = function () { // 웹 페이지의 로딩 완료시 실행
 		tds[i].style.backgroundColor = "white";
 	}
 	tds[index].style.backgroundColor = setColor;
+	initArray();
 }
 window.onkeydown = function (e) {
 	switch(e.key) {
@@ -70,6 +82,7 @@ function newNode(){
 function remove(){
 	horizontalRemove();
 	verticalRemove();
+	diagonalRemove();
 	relocation();
 }
 function horizontalRemove(){
@@ -141,6 +154,132 @@ function verticalRemove(){
 		}
 	}
 	
+}
+function diagonalRemove(){
+	let count=0;
+	let searchColor;
+	let diagonal;
+	for(let m =0;m<3;m++){
+		searchColor=color[m];
+		for(let diagonal=90;diagonal>=0;diagonal-=10){
+			for(let k=0;k<100;k+=11){
+				if(tds[diagonal+k].style.backgroundColor==searchColor){
+					count++;
+					if((diagonal+k)/10 >= 9){
+						if(count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*11].style.backgroundColor="white"
+							}
+						}
+						break;
+					}
+					else{
+						if(tds[diagonal+k+11].style.backgroundColor!=searchColor && count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*11].style.backgroundColor="white"
+							}
+						}
+					}
+				}
+				else{
+					count=0;
+					if((diagonal+k)/10 >= 9){
+						break;
+					}
+				}
+			}
+			count=0;
+		}
+		for(let diagonal=1;diagonal<10;diagonal++){
+			for(let k=0;k<100;k+=11){
+				if(tds[diagonal+k].style.backgroundColor==searchColor){
+					count++;
+					if((diagonal+k)%10 == 9){
+						if(count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*11].style.backgroundColor="white"
+							}
+						}
+						break;
+					}
+					else{
+						if(tds[diagonal+k+11].style.backgroundColor!=searchColor && count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*11].style.backgroundColor="white"
+							}
+						}
+					}
+				}
+				else{
+					count=0;
+					if((diagonal+k)%10 == 9){
+						break;
+					}
+				}
+			}
+			count=0;
+		}
+
+
+		for(let diagonal=99;diagonal>=0;diagonal-=10){
+			for(let k=0;k<100;k+=9){
+				if(tds[diagonal+k].style.backgroundColor==searchColor){
+					count++;
+					if((diagonal+k)/10 >= 9){
+						if(count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*9].style.backgroundColor="white"
+							}
+						}
+						break;
+					}
+					else{
+						if(tds[diagonal+k+9].style.backgroundColor!=searchColor && count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*9].style.backgroundColor="white"
+							}
+						}
+					}
+				}
+				else{
+					count=0;
+					if((diagonal+k)/10 >= 9){
+						break;
+					}
+				}
+			}
+			count=0;
+		}
+		for(let diagonal=9;diagonal>0;diagonal--){
+			for(let k=0;k<100;k+=9){
+				if(tds[diagonal+k].style.backgroundColor==searchColor){
+					count++;
+					if((diagonal+k)%10 == 0){
+						if(count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*11].style.backgroundColor="white"
+							}
+						}
+						break;
+					}
+					else{
+						if(tds[diagonal+k+9].style.backgroundColor!=searchColor && count>=3){
+							for(let j=count-1;j>=0;j--){
+								tds[diagonal+k-j*11].style.backgroundColor="white"
+							}
+						}
+					}
+				}
+				else{
+					count=0;
+					if((diagonal+k)%10 == 0){
+						break;
+					}
+				}
+			}
+			count=0;
+		}
+	}
 }
 function relocation(){
 	let flag=false;
