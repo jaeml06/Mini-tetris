@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8"><title>키 이벤트 응용</title>
+        <meta charset="utf-8"><title>MINI TETRIS</title>
         <link rel="stylesheet" href="style.css">
     </head>
-<body>
-<h3>MINI TETRIS<div id="score">점수: 0</div>
-    <div id="level">level: 0</div>
-    <div id="block"></div>
-
+<body onload="setting()"><!--body 로딩시 setting 호출-->
+<h3>MINI TETRIS<div id="score">점수: 0</div><!--점수-->
+    <div id="level">level: 1</div> <!--레벨-->
+    <div id="block"></div><!--다음 블록 색-->
 </h3>
-    <br>
+<br>
 <hr>
-<table>
-	<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-	<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<table id="table">
 </table>
 <script src="setgame.js"></script>
 </body></html>
